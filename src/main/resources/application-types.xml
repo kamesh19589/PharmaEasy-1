@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="abc" format="json">
+      <types:shape format="weave" example="examples/a-2.json"><![CDATA[%dw 2.0
+
+type abc = Array<{|  ProductName: String,   Price: String,   Brand: String,   ManufactureName: String,   Description: String,   KeyIngredients: String,   KeyBenefits: String,   DirectionsForUse: String,   SafetyInfo: String|}> {"example": "[{\\\"ProductName\\\":\\\"jhdfbf\\\",\\\"Price\\\":\\\"50\\\",\\\"Brand\\\":\\\"gfhbfjkhf\\\",\\\"ManufactureName\\\":\\\"reryrur\\\",\\\"Description\\\":\\\"fyhfuhf\\\",\\\"KeyIngredients\\\":\\\"yughrufhjf\\\",\\\"KeyBenefits\\\":\\\"yutryhfh\\\",\\\"DirectionsForUse\\\":\\\"hhfhefhjf\\\",\\\"SafetyInfo\\\":\\\"yuegyruch\\\"},{\\\"ProductName\\\":\\\"jhdfbf\\\",\\\"Price\\\":\\\"50\\\",\\\"Brand\\\":\\\"gfhbfjkhf\\\",\\\"ManufactureName\\\":\\\"reryrur\\\",\\\"Description\\\":\\\"fyhfuhf\\\",\\\"KeyIngredients\\\":\\\"yughrufhjf\\\",\\\"KeyBenefits\\\":\\\"yutryhfh\\\",\\\"DirectionsForUse\\\":\\\"hhfhefhjf\\\",\\\"SafetyInfo\\\":\\\"yuegyruch\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="def" format="json">
+      <types:shape format="weave" example="examples/c-4.json"><![CDATA[%dw 2.0
+
+type def = Array<{|  productName: String,   price: String,   brand: String,   manufactName: String,   descp: String,   keyingredients: String,   keybenefits: String,   directionsforuse: String,   safetyinfo: String|}> {"example": "[{\\\"productName\\\":\\\"Glucon-D\\\",\\\"price\\\":\\\"60\\\",\\\"brand\\\":\\\"Glucon_D\\\",\\\"manufactName\\\":\\\"Zydus Wellness Products Ltd\\\",\\\"descp\\\":\\\"Glucon-D Health Drink contains glucose that helps replenish body glucose and fills\\\",\\\"keyingredients\\\":\\\"Glucose Sucrose\\\",\\\"keybenefits\\\":\\\"Glucon D fills one with the energy required to stay active\\\",\\\"directionsforuse\\\":\\\" Use as directed on the label\\\",\\\"safetyinfo\\\":\\\"Read the label carefully before use\\\"},{\\\"productName\\\":\\\"Glucon-D\\\",\\\"price\\\":\\\"60\\\",\\\"brand\\\":\\\"Glucon_D\\\",\\\"manufactName\\\":\\\"Zydus Wellness Products Ltd\\\",\\\"descp\\\":\\\"Glucon-D Health Drink contains glucose that helps replenish body glucose and fills\\\",\\\"keyingredients\\\":\\\"Glucose Sucrose\\\",\\\"keybenefits\\\":\\\"Glucon D fills one with the energy required to stay active\\\",\\\"directionsforuse\\\":\\\" Use as directed on the label\\\",\\\"safetyinfo\\\":\\\"Read the label carefully before use\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="ghi" format="json">
+      <types:shape format="weave" example="examples/e-2.json"><![CDATA[%dw 2.0
+
+type ghi = Array<{|  productName: String,   price: String,   brand: String,   manufactName: String,   descp: String,   keyingredients: String,   keybenefits: String,   directionsforuse: String,   safetyinfo: String|}> {"example": "[{\\\"productName\\\":\\\"Glucon-D\\\",\\\"price\\\":\\\"60\\\",\\\"brand\\\":\\\"Glucon_D\\\",\\\"manufactName\\\":\\\"Zydus Wellness Products Ltd\\\",\\\"descp\\\":\\\"Glucon-D Health Drink contains glucose that helps replenish body glucose and fills\\\",\\\"keyingredients\\\":\\\"Glucose Sucrose\\\",\\\"keybenefits\\\":\\\"Glucon D fills one with the energy required to stay active\\\",\\\"directionsforuse\\\":\\\" Use as directed on the label\\\",\\\"safetyinfo\\\":\\\"Read the label carefully before use\\\"},{\\\"productName\\\":\\\"Glucon-D\\\",\\\"price\\\":\\\"60\\\",\\\"brand\\\":\\\"Glucon_D\\\",\\\"manufactName\\\":\\\"Zydus Wellness Products Ltd\\\",\\\"descp\\\":\\\"Glucon-D Health Drink contains glucose that helps replenish body glucose and fills\\\",\\\"keyingredients\\\":\\\"Glucose Sucrose\\\",\\\"keybenefits\\\":\\\"Glucon D fills one with the energy required to stay active\\\",\\\"directionsforuse\\\":\\\" Use as directed on the label\\\",\\\"safetyinfo\\\":\\\"Read the label carefully before use\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="jkl" format="json">
+      <types:shape format="weave" example="examples/f.json"><![CDATA[%dw 2.0
+
+type jkl = Array<{|  ProductName: String,   Price: String,   Brand: String,   ManufactureName: String,   Description: String,   KeyIngredients: String,   KeyBenefits: String,   DirectionsForUse: String,   SafetyInfo: String|}> {"example": "[{\\\"ProductName\\\":\\\"jhdfbf\\\",\\\"Price\\\":\\\"50\\\",\\\"Brand\\\":\\\"gfhbfjkhf\\\",\\\"ManufactureName\\\":\\\"reryrur\\\",\\\"Description\\\":\\\"fyhfuhf\\\",\\\"KeyIngredients\\\":\\\"yughrufhjf\\\",\\\"KeyBenefits\\\":\\\"yutryhfh\\\",\\\"DirectionsForUse\\\":\\\"hhfhefhjf\\\",\\\"SafetyInfo\\\":\\\"yuegyruch\\\"},{\\\"ProductName\\\":\\\"jhdfbf\\\",\\\"Price\\\":\\\"50\\\",\\\"Brand\\\":\\\"gfhbfjkhf\\\",\\\"ManufactureName\\\":\\\"reryrur\\\",\\\"Description\\\":\\\"fyhfuhf\\\",\\\"KeyIngredients\\\":\\\"yughrufhjf\\\",\\\"KeyBenefits\\\":\\\"yutryhfh\\\",\\\"DirectionsForUse\\\":\\\"hhfhefhjf\\\",\\\"SafetyInfo\\\":\\\"yuegyruch\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="bbb" format="json">
+      <types:shape format="weave" example="examples/Meid.json"><![CDATA[%dw 2.0
+
+type bbb = Array<{|  MedicineName: String,   Price: String,   Composition: String,   Therapeutic_Classification: String,   medicalDescp: String,   Uses: String,   Contraindications: String,   SideEffects: String,   Precautions_and_Warnings: String,   ModeofAction: String,   DirectionsForUse: String,   Interactions: String,   Dosage: String|}> {"example": "[{\\\"MedicineName\\\":\\\"Pan 40mg 15's Tab\\\",\\\"Price\\\":\\\"60\\\",\\\"Composition\\\":\\\"Pantoprazole(40.0 Mg)\\\",\\\"Therapeutic_Classification\\\":\\\"Antacid\\\",\\\"medicalDescp\\\":\\\"Pan 40mg 15'S Tab is a proton pump inhibitor and Anti reflux drug that helps to decrease acid production in the stomach\\\",\\\"Uses\\\":\\\"Pan 40mg 15'S Tab uses include the treatment of ulcer in the stomach or the first part of intestine. Doctors also prescribe Pan 40mg 15'S Tab for Helicobacter pylori infection( infection of the stomach), along with antibiotics, for Zollinger-Ellison syndrome, treatment of symptoms like heartburn, acid regurgitation that are commonly associated to gastro-oesophageal reflux disease, and to decrease or neutralize secretion of acid.\\\",\\\"Contraindications\\\":\\\"Refrain from consuming Pan 40mg 15'S Tab if you have an allergic reaction to Pan 40mg 15'S Tab or any other proton pump inhibitors, are on anti-HIV medications such as rilpivirine, atazanavir, etc., on methotrexate or if you have any personal or family history of stomach cancer or have\\/are suspected to have stomach cancer\\\",\\\"SideEffects\\\":\\\"Commonest Pan 40mg 15'S Tab side effects include diarrhea or constipation,headache, along with dryness of mouth and flatulence.Serious skin conditions include blistering of skin, erosion of lips, nose,genitals, mouth, (a disorder of skin and mucous membranes as a reaction to a medication or an infection. It begins with flu-like symptoms, followed by a painful red or purplish rash that spreads and blisters) and sensitivity to light.Long term use may increase risk of infections.Fractures( hip, wrist or spine)\\\",\\\"Precautions_and_Warnings\\\":\\\"Q:Can I take Pan 40mg 15'S Tab during pregnancy? A:There is no adequate information from the use of Pan 40mg 15'S Tabin pregnant women. If you are pregnant, you should use this medicine only if your doctor considers the benefit for you greater than the potential risk for your unborn baby.Q:Can I take Pan 40mg 15'S Tab while breastfeeding? A:Pan 40mg 15'S Tabpasses into human milk. If you are breast-feeding, ask your doctor before taking this medicine\\\",\\\"ModeofAction\\\":\\\"The secretion of acids in the stomach is influenced by proton pump in the stomach . Pan 40mg 15'S Tab binds to this pump, thereby blocking acid secretion. Hence, Pan 40mg 15'S Tab is indicated in conditions where excessive acidity is prevalent.\\\",\\\"DirectionsForUse\\\":\\\"Pan 40mg 15'S Tab is to be taken on an empty stomach, in the morning as a single dose\\\",\\\"Interactions\\\":\\\"Interactions with other medicines..Tell your doctor if you are taking any of these medicines as Pan 40mg 15'S Tab may influence their effectiveness: Itraconazole, ketoconazole (used to treat fungal infections); erlotinib, methotrexate (used for certain types of cancer); HIV\\/AIDS medicines such as nelfinavir \\/ tenofovir \\/ atazanavir \\/ rilpivirine, etc.; or warfarin or phenprocoumon, which affect the thickening or thinning of the blood\\\",\\\"Dosage\\\":\\\"There is limited information on overdose of this medication.Missed dose should be taken as soon as you remember or in case it is almost time for the next dose it should be skipped. Extra dose should not be consumed to compensate for a missed one.\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="ccc" format="json">
+      <types:shape format="weave" example="examples/med.json"><![CDATA[%dw 2.0
+
+type ccc = Array<{|  medicineName: String,   price: String,   composition: String,   therapeutic_classification: String,   medicalDescp: String,   uses: String,   contraindications: String,   sideeffects: String,   precautions_and_warnings: String,   modeofaction: String,   directionsforuse: String,   interactions: String,   dosage: String|}> {"example": "[{\\\"medicineName\\\":\\\"Pan 40mg 15's Tab\\\",\\\"price\\\":\\\"60\\\",\\\"composition\\\":\\\"Pantoprazole(40.0 Mg)\\\",\\\"therapeutic_classification\\\":\\\"Antacid\\\",\\\"medicalDescp\\\":\\\"Pan 40mg 15'S Tab is a proton pump inhibitor and Anti reflux drug that helps to decrease acid production in the stomach\\\",\\\"uses\\\":\\\"Pan 40mg 15'S Tab uses include the treatment of ulcer in the stomach or the first part of intestine. Doctors also prescribe Pan 40mg 15'S Tab for Helicobacter pylori infection( infection of the stomach), along with antibiotics, for Zollinger-Ellison syndrome, treatment of symptoms like heartburn, acid regurgitation that are commonly associated to gastro-oesophageal reflux disease, and to decrease or neutralize secretion of acid.\\\",\\\"contraindications\\\":\\\"Refrain from consuming Pan 40mg 15'S Tab if you have an allergic reaction to Pan 40mg 15'S Tab or any other proton pump inhibitors, are on anti-HIV medications such as rilpivirine, atazanavir, etc., on methotrexate or if you have any personal or family history of stomach cancer or have\\/are suspected to have stomach cancer\\\",\\\"sideeffects\\\":\\\"Commonest Pan 40mg 15'S Tab side effects include diarrhea or constipation,headache, along with dryness of mouth and flatulence.Serious skin conditions include blistering of skin, erosion of lips, nose,genitals, mouth, (a disorder of skin and mucous membranes as a reaction to a medication or an infection. It begins with flu-like symptoms, followed by a painful red or purplish rash that spreads and blisters) and sensitivity to light.Long term use may increase risk of infections.Fractures( hip, wrist or spine)\\\",\\\"precautions_and_warnings\\\":\\\"Q:Can I take Pan 40mg 15'S Tab during pregnancy? A:There is no adequate information from the use of Pan 40mg 15'S Tabin pregnant women. If you are pregnant, you should use this medicine only if your doctor considers the benefit for you greater than the potential risk for your unborn baby.Q:Can I take Pan 40mg 15'S Tab while breastfeeding? A:Pan 40mg 15'S Tabpasses into human milk. If you are breast-feeding, ask your doctor before taking this medicine\\\",\\\"modeofaction\\\":\\\"The secretion of acids in the stomach is influenced by proton pump in the stomach . Pan 40mg 15'S Tab binds to this pump, thereby blocking acid secretion. Hence, Pan 40mg 15'S Tab is indicated in conditions where excessive acidity is prevalent.\\\",\\\"directionsforuse\\\":\\\"Pan 40mg 15'S Tab is to be taken on an empty stomach, in the morning as a single dose\\\",\\\"interactions\\\":\\\"Interactions with other medicines..Tell your doctor if you are taking any of these medicines as Pan 40mg 15'S Tab may influence their effectiveness: Itraconazole, ketoconazole (used to treat fungal infections); erlotinib, methotrexate (used for certain types of cancer); HIV\\/AIDS medicines such as nelfinavir \\/ tenofovir \\/ atazanavir \\/ rilpivirine, etc.; or warfarin or phenprocoumon, which affect the thickening or thinning of the blood\\\",\\\"dosage\\\":\\\"There is limited information on overdose of this medication.Missed dose should be taken as soon as you remember or in case it is almost time for the next dose it should be skipped. Extra dose should not be consumed to compensate for a missed one.\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="ddd" format="json">
+      <types:shape format="weave" example="examples/Meid-1.json"><![CDATA[%dw 2.0
+
+type ddd = Array<{|  MedicineName: String,   Price: String,   Composition: String,   Therapeutic_Classification: String,   medicalDescp: String,   Uses: String,   Contraindications: String,   SideEffects: String,   Precautions_and_Warnings: String,   ModeofAction: String,   DirectionsForUse: String,   Interactions: String,   Dosage: String|}> {"example": "[{\\\"MedicineName\\\":\\\"Pan 40mg 15's Tab\\\",\\\"Price\\\":\\\"60\\\",\\\"Composition\\\":\\\"Pantoprazole(40.0 Mg)\\\",\\\"Therapeutic_Classification\\\":\\\"Antacid\\\",\\\"medicalDescp\\\":\\\"Pan 40mg 15'S Tab is a proton pump inhibitor and Anti reflux drug that helps to decrease acid production in the stomach\\\",\\\"Uses\\\":\\\"Pan 40mg 15'S Tab uses include the treatment of ulcer in the stomach or the first part of intestine. Doctors also prescribe Pan 40mg 15'S Tab for Helicobacter pylori infection( infection of the stomach), along with antibiotics, for Zollinger-Ellison syndrome, treatment of symptoms like heartburn, acid regurgitation that are commonly associated to gastro-oesophageal reflux disease, and to decrease or neutralize secretion of acid.\\\",\\\"Contraindications\\\":\\\"Refrain from consuming Pan 40mg 15'S Tab if you have an allergic reaction to Pan 40mg 15'S Tab or any other proton pump inhibitors, are on anti-HIV medications such as rilpivirine, atazanavir, etc., on methotrexate or if you have any personal or family history of stomach cancer or have\\/are suspected to have stomach cancer\\\",\\\"SideEffects\\\":\\\"Commonest Pan 40mg 15'S Tab side effects include diarrhea or constipation,headache, along with dryness of mouth and flatulence.Serious skin conditions include blistering of skin, erosion of lips, nose,genitals, mouth, (a disorder of skin and mucous membranes as a reaction to a medication or an infection. It begins with flu-like symptoms, followed by a painful red or purplish rash that spreads and blisters) and sensitivity to light.Long term use may increase risk of infections.Fractures( hip, wrist or spine)\\\",\\\"Precautions_and_Warnings\\\":\\\"Q:Can I take Pan 40mg 15'S Tab during pregnancy? A:There is no adequate information from the use of Pan 40mg 15'S Tabin pregnant women. If you are pregnant, you should use this medicine only if your doctor considers the benefit for you greater than the potential risk for your unborn baby.Q:Can I take Pan 40mg 15'S Tab while breastfeeding? A:Pan 40mg 15'S Tabpasses into human milk. If you are breast-feeding, ask your doctor before taking this medicine\\\",\\\"ModeofAction\\\":\\\"The secretion of acids in the stomach is influenced by proton pump in the stomach . Pan 40mg 15'S Tab binds to this pump, thereby blocking acid secretion. Hence, Pan 40mg 15'S Tab is indicated in conditions where excessive acidity is prevalent.\\\",\\\"DirectionsForUse\\\":\\\"Pan 40mg 15'S Tab is to be taken on an empty stomach, in the morning as a single dose\\\",\\\"Interactions\\\":\\\"Interactions with other medicines..Tell your doctor if you are taking any of these medicines as Pan 40mg 15'S Tab may influence their effectiveness: Itraconazole, ketoconazole (used to treat fungal infections); erlotinib, methotrexate (used for certain types of cancer); HIV\\/AIDS medicines such as nelfinavir \\/ tenofovir \\/ atazanavir \\/ rilpivirine, etc.; or warfarin or phenprocoumon, which affect the thickening or thinning of the blood\\\",\\\"Dosage\\\":\\\"There is limited information on overdose of this medication.Missed dose should be taken as soon as you remember or in case it is almost time for the next dose it should be skipped. Extra dose should not be consumed to compensate for a missed one.\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="ee" format="json">
+      <types:shape format="weave" example="examples/med-1.json"><![CDATA[%dw 2.0
+
+type ee = Array<{|  medicineName: String,   price: String,   composition: String,   therapeutic_classification: String,   medicalDescp: String,   uses: String,   contraindications: String,   sideeffects: String,   precautions_and_warnings: String,   modeofaction: String,   directionsforuse: String,   interactions: String,   dosage: String|}> {"example": "[{\\\"medicineName\\\":\\\"Pan 40mg 15's Tab\\\",\\\"price\\\":\\\"60\\\",\\\"composition\\\":\\\"Pantoprazole(40.0 Mg)\\\",\\\"therapeutic_classification\\\":\\\"Antacid\\\",\\\"medicalDescp\\\":\\\"Pan 40mg 15'S Tab is a proton pump inhibitor and Anti reflux drug that helps to decrease acid production in the stomach\\\",\\\"uses\\\":\\\"Pan 40mg 15'S Tab uses include the treatment of ulcer in the stomach or the first part of intestine. Doctors also prescribe Pan 40mg 15'S Tab for Helicobacter pylori infection( infection of the stomach), along with antibiotics, for Zollinger-Ellison syndrome, treatment of symptoms like heartburn, acid regurgitation that are commonly associated to gastro-oesophageal reflux disease, and to decrease or neutralize secretion of acid.\\\",\\\"contraindications\\\":\\\"Refrain from consuming Pan 40mg 15'S Tab if you have an allergic reaction to Pan 40mg 15'S Tab or any other proton pump inhibitors, are on anti-HIV medications such as rilpivirine, atazanavir, etc., on methotrexate or if you have any personal or family history of stomach cancer or have\\/are suspected to have stomach cancer\\\",\\\"sideeffects\\\":\\\"Commonest Pan 40mg 15'S Tab side effects include diarrhea or constipation,headache, along with dryness of mouth and flatulence.Serious skin conditions include blistering of skin, erosion of lips, nose,genitals, mouth, (a disorder of skin and mucous membranes as a reaction to a medication or an infection. It begins with flu-like symptoms, followed by a painful red or purplish rash that spreads and blisters) and sensitivity to light.Long term use may increase risk of infections.Fractures( hip, wrist or spine)\\\",\\\"precautions_and_warnings\\\":\\\"Q:Can I take Pan 40mg 15'S Tab during pregnancy? A:There is no adequate information from the use of Pan 40mg 15'S Tabin pregnant women. If you are pregnant, you should use this medicine only if your doctor considers the benefit for you greater than the potential risk for your unborn baby.Q:Can I take Pan 40mg 15'S Tab while breastfeeding? A:Pan 40mg 15'S Tabpasses into human milk. If you are breast-feeding, ask your doctor before taking this medicine\\\",\\\"modeofaction\\\":\\\"The secretion of acids in the stomach is influenced by proton pump in the stomach . Pan 40mg 15'S Tab binds to this pump, thereby blocking acid secretion. Hence, Pan 40mg 15'S Tab is indicated in conditions where excessive acidity is prevalent.\\\",\\\"directionsforuse\\\":\\\"Pan 40mg 15'S Tab is to be taken on an empty stomach, in the morning as a single dose\\\",\\\"interactions\\\":\\\"Interactions with other medicines..Tell your doctor if you are taking any of these medicines as Pan 40mg 15'S Tab may influence their effectiveness: Itraconazole, ketoconazole (used to treat fungal infections); erlotinib, methotrexate (used for certain types of cancer); HIV\\/AIDS medicines such as nelfinavir \\/ tenofovir \\/ atazanavir \\/ rilpivirine, etc.; or warfarin or phenprocoumon, which affect the thickening or thinning of the blood\\\",\\\"dosage\\\":\\\"There is limited information on overdose of this medication.Missed dose should be taken as soon as you remember or in case it is almost time for the next dose it should be skipped. Extra dose should not be consumed to compensate for a missed one.\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#6b5bf23c-b36f-4e19-92f9-dbf1a7a65e6c">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="abc"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="def"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#bb556597-526c-4600-96d7-40b1e248804b">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="ghi"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="jkl"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#4cf1f8b9-b80e-4070-84f1-9759873cd1d1">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="bbb"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="ccc"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#f2665cbc-ac09-4f88-99dc-8d6e5992a9d5">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="ee"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="ddd"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

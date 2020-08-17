@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="3e52f2a2-aeb0-4289-b95f-2879954f29f0" >
+		<file:connection workingDir="E:\PharmaEasy\HealthProducts" />
+	</file:config>
+	<flow name="healthproductFlow" doc:id="52ff08fb-0d9a-4187-9bf3-cc97b60a76f6" >
+		<logger level="INFO" doc:name="Logger" doc:id="743e3db4-bad7-4fc5-bae5-97d61ef64502" />
+		<ee:transform doc:name="Transform Message" doc:id="6b5bf23c-b36f-4e19-92f9-dbf1a7a65e6c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	productName: payload01.ProductName,
+	price: payload01.Price,
+	brand: payload01.Brand,
+	manufactName: payload01.ManufactureName,
+	descp: payload01.Description,
+	keyingredients: payload01.KeyIngredients,
+	keybenefits: payload01.KeyBenefits,
+	directionsforuse: payload01.DirectionsForUse,
+	safetyinfo: payload01.SafetyInfo
+}
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="1f26c290-9968-40f1-af21-451673131716" message="after the ...........#[payload]"/>
+		<db:bulk-insert doc:name="Bulk insert" doc:id="652f956a-b744-464d-bd5a-da2fb21383ee" config-ref="Database_Config">
+			<db:bulk-input-parameters ><![CDATA[#[payload map ( payload , indexOfPayload01 ) -> {
+    'productName': payload.productName,
+	'price': payload.price,
+	'brand': payload.brand,
+	'manufactName': payload.manufactName,
+	'descp': payload.descp,
+	'keyingredients': payload.keyingredients,
+	'keybenefits': payload.keybenefits,
+	'directionsforuse': payload.directionsforuse,
+	'safetyinfo': payload.safetyinfo
+}]]]></db:bulk-input-parameters>
+			<db:sql >insert into healthproduct(productName,price,brand,manufactName,descp,keyingredients,keybenefits,directionsforuse,safetyinfo) 
+values(:productName,:price,:brand,:manufactName,:descp,:keyingredients,:keybenefits,:directionsforuse,:safetyinfo); </db:sql>
+		</db:bulk-insert>
+		<logger level="INFO" doc:name="Logger" doc:id="64260f46-d49e-4d16-b981-d4eeeb6bb07d" message="after the insert......#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="7c124d4a-e9a2-4bcd-b4c1-74b611ed9221" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ {
+ statusCode: '201',
+ message: 'successfully posted'
+ }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="healthproductFlow1" doc:id="3d511d9c-721f-4b2d-9215-f42c6e2073c2" >
+		<logger level="INFO" doc:name="Logger" doc:id="bdff29f5-be55-4c55-bbbd-ce2b60bec991" />
+		<db:select doc:name="Select" doc:id="5a4a431d-67fd-4b6b-8356-7d0d4e59dadf" config-ref="Database_Config">
+			<db:sql >select * from healthproduct where productName= :id</db:sql>
+			<db:input-parameters ><![CDATA[#[{ 'id': attributes.queryParams.id }]]]></db:input-parameters>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="bb556597-526c-4600-96d7-40b1e248804b">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	ProductName: payload01.productName,
+	Price: payload01.price,
+	Brand: payload01.brand,
+	ManufactureName: payload01.manufactName,
+	Description: payload01.descp,
+	KeyIngredients: payload01.keyingredients,
+	KeyBenefits: payload01.keybenefits,
+	DirectionsForUse: payload01.directionsforuse,
+	SafetyInfo: payload01.safetyinfo
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="16493394-dc9b-45c5-b062-cb84beda706c" message="after the transform....#[payload]"/>
+	</flow>
+	<flow name="healthproductFlow2" doc:id="afe5cb4f-2a5b-4eba-895f-99820ac5e6e6" >
+		<logger level="INFO" doc:name="Logger" doc:id="e3fcd74b-9e10-4c80-a69f-e4982a727fd8" />
+		<db:delete doc:name="Delete" doc:id="1b1a79ce-4dc0-467f-ac52-538e920008d8" config-ref="Database_Config">
+			<db:sql >delete from healthproduct where productName = :id</db:sql>
+			<db:input-parameters ><![CDATA[#[{ 'id': attributes.queryParams.id }]]]></db:input-parameters>
+		</db:delete>
+		<ee:transform doc:name="Transform Message" doc:id="017e33d4-99e2-456d-aa5e-8414b05bdc6f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+  {
+ statusCode: '200',
+ message: 'successfully deleted'
+ }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

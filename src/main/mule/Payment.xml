@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="PaymentFlow" doc:id="cdd9a336-f4c3-4fc2-be11-6b7fc5fee53c" >
+		<logger level="INFO" doc:name="Logger" doc:id="b21053d9-f6e7-4ef5-a3fe-0cdd770a6d18" />
+		<db:insert doc:name="Insert" doc:id="28533aee-42a1-42b3-ad5a-32d9b3c0bb8b" config-ref="Database_Config">
+			<db:sql >insert into address( Bill_To,phone,Building_and_FlatNumber,StreetNumber,PinCode,AddressType)
+values(:Bill_To,:phone,:Building_and_FlatNumber,:StreetNumber,:PinCode,:AddressType);</db:sql>
+			<db:input-parameters ><![CDATA[#[{ 
+	'Bill_To': payload.Bill_To,
+	'Mobile_Number': payload.phone,
+	'Building_and_FlatNumber': payload.Building_and_FlatNumber,
+	'StreetNumber': payload.StreetNumber,
+	'PinCode': payload.PinCode,
+	'AddressType': payload.AddressType
+	}]]]></db:input-parameters>
+		</db:insert>
+		<ee:transform doc:name="Transform Message" doc:id="eddcef4c-bb1a-47e4-bc18-11e1b14c7187" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ {}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

@@ -1,0 +1,124 @@
+#%RAML 1.0
+title: PharmaEasyapi
+baseUri: http://localhost:8083/api
+mediaType: application/json
+
+types: 
+    Account: !include DataTypes/Account.raml
+    AccountResponse: !include DataTypes/AccountResponse.raml
+    ProductItem: !include DataTypes/ProductItem.raml
+    CustomResponseMessage: !include DataTypes/CustomResponseMessage.raml
+    Address: !include DataTypes/Address.raml
+    Ordersummary: !include DataTypes/Ordersummary.raml
+    Transaction: !include DataTypes/Transaction.raml
+    continue: !include DataTypes/continue.raml
+    MedicineItem: !include DataTypes/MedicineItem.raml
+    
+/account:
+ post:
+    body:
+       type: Account
+       example: !include Examples/AccountExample.raml          
+    responses: 
+      201:
+       body: 
+        application/json:
+         type: AccountResponse
+         example: !include Examples/AccountResponseExample.raml
+         
+         
+/Medicines:
+      get:
+        responses:
+          200:
+            body:
+             description: to show all covid19 related products
+             type: MedicineItem
+      post:
+       description: Add a new product
+       body:
+         type: MedicineItem
+       responses: 
+         201:
+          headers: 
+            Location:
+          body:
+           type: CustomResponseMessage
+           example: !include Examples/CustomeResponseExample.raml
+      delete:
+       responses: 
+        200:
+          body:
+         
+                  
+
+/HealthProducts:
+      get:
+        responses:
+          200:
+            body:
+             description: to show all covid19 related products
+             type: ProductItem
+      post:
+       description: Add a new product
+       body:
+         type: ProductItem
+       responses: 
+         201:
+          headers: 
+            Location:
+          body:
+           type: CustomResponseMessage
+           example: !include Examples/CustomeResponseExample.raml
+      delete:
+       responses: 
+        200:
+          body:
+
+
+/Diagnostic_Tests: 
+  get:
+    responses:
+      200:
+        body:
+          description: to retreive list of tests
+          type: ProductItem
+  delete:
+    responses: 
+        200:
+          body:
+
+/Payment:
+  description: Add a new transaction
+  post:
+    body:
+      type: Transaction
+    responses: 
+      201:
+        headers: 
+          Location:
+        body:
+          type: CustomResponseMessage
+          example: !include Examples/CustomeResponseExample.raml
+  get:
+      responses: 
+        200:
+          body:
+            type: Transaction
+        
+/searchproducts:
+  get:
+    responses:
+      200:
+        body:
+          description: to display all products
+          type: ProductItem  
+
+            
+
+
+
+
+           
+         
+           

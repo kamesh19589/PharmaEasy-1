@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="medicinesFlow" doc:id="89e85bdd-2092-4e28-b80a-7beeec2ba329" >
+		<logger level="INFO" doc:name="Logger" doc:id="6df37fb3-97ac-4a4b-acf8-adea76bd51bb" />
+		<ee:transform doc:name="Transform Message" doc:id="4cf1f8b9-b80e-4070-84f1-9759873cd1d1" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	medicineName: payload01.MedicineName,
+	price: payload01.Price,
+	composition: payload01.Composition,
+	therapeutic_classification: payload01.Therapeutic_Classification,
+	medicalDescp: payload01.MedicalDescp,
+	uses: payload01.Uses,
+	contraindications: payload01.Contraindications,
+	sideeffects: payload01.SideEffects,
+	precautions_and_warnings: payload01.Precautions_and_Warnings,
+	modeofaction: payload01.ModeofAction,
+	directionsforuse: payload01.DirectionsForUse,
+	interactions: payload01.Interactions,
+	dosage: payload01.Dosage
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="c3195aee-65dd-4746-afb5-9ba50a0f6420" message="after the transform.....#[payload]"/>
+		<db:bulk-insert doc:name="Bulk insert" doc:id="80b97ea1-090d-42ee-badc-1ad3095bcc73" config-ref="Database_Config">
+			<db:bulk-input-parameters ><![CDATA[#[payload map ( payload , indexOfPayload01 ) -> {
+	'medicineName': payload.medicineName,
+	'price': payload.price,
+	'composition': payload.composition,
+	'therapeutic_classification': payload.therapeutic_classification,
+	'medicalDescp': payload.medicalDescp,
+	'uses': payload.uses,
+	'contraindications': payload.contraindications,
+	'sideeffects': payload.sideeffects,
+	'precautions_and_warnings': payload.precautions_and_warnings,
+	'modeofaction': payload.modeofaction,
+	'directionsforuse': payload.directionsforuse,
+	'interactions': payload.interactions,
+	'dosage': payload.dosage
+}]]]></db:bulk-input-parameters>
+			<db:sql >insert into medicines(medicineName,price,composition,therapeutic_classification,medicalDescp,uses,contraindications,sideeffects,precautions_and_warnings,modeofaction,directionsforuse,interactions,dosage)
+values(:medicineName,:price,:composition,:therapeutic_classification,:medicalDescp,:uses,:contraindications,:sideeffects,:precautions_and_warnings,:modeofaction,:directionsforuse,:interactions,:dosage);</db:sql>
+		</db:bulk-insert>
+		<logger level="INFO" doc:name="Logger" doc:id="7058597c-bdc2-478b-ab8f-1a49e6f4c935" message="after the bulk insert.....#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="dc6cb24f-cfad-47b1-bbaf-49431621edc6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ {
+ statusCode: '201',
+ message: 'successfully posted'
+ }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="medicinesFlow1" doc:id="2f613318-2c97-44a2-a487-af6f39b879f9" >
+		<logger level="INFO" doc:name="Logger" doc:id="c12168de-ffa1-4635-b0ee-f39499281415" />
+		<db:select doc:name="Select" doc:id="73d975a5-f7cb-408b-b813-1d95a91c5289" config-ref="Database_Config">
+			<db:sql >select * from medicines where medicineName= :id</db:sql>
+			<db:input-parameters ><![CDATA[#[{'id': attributes.queryParams.id }]]]></db:input-parameters>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="f2665cbc-ac09-4f88-99dc-8d6e5992a9d5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	MedicineName: payload01.medicineName,
+	Price: payload01.price,
+	Composition: payload01.composition,
+	Therapeutic_Classification: payload01.therapeutic_classification,
+	medicalDescp: payload01.medicalDescp,
+	Uses: payload01.uses,
+	Contraindications: payload01.contraindications,
+	SideEffects: payload01.sideeffects,
+	Precautions_and_Warnings: payload01.precautions_and_warnings,
+	ModeofAction: payload01.modeofaction,
+	DirectionsForUse: payload01.directionsforuse,
+	Interactions: payload01.interactions,
+	Dosage: payload01.dosage
+}
+
+
+
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="25193883-9123-4cf2-afb3-57c36d6f185b" message="after the transform.....#[payload]"/>
+	</flow>
+	<flow name="medicinesFlow2" doc:id="7f1e149c-b2c8-4e77-befc-9138d8b63777" >
+		<logger level="INFO" doc:name="Logger" doc:id="badcc105-8a14-4d88-815a-553e7e8ef0b7" />
+		<db:delete doc:name="Delete" doc:id="30f9b0b4-aa7b-4b89-9f81-afa8d270f0bd" config-ref="Database_Config">
+			<db:sql >delete  from medicines where medicineName=:id</db:sql>
+			<db:input-parameters ><![CDATA[#[{ 'id': attributes.queryParams.id}]]]></db:input-parameters>
+		</db:delete>
+		<ee:transform doc:name="Transform Message" doc:id="f1bb2cd4-6441-4711-b0c0-ee7814040b24" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	statusCode: '200',
+    message: 'successfully deleted'
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

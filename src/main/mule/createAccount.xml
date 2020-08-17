@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="55f375e8-80cc-4f2d-90e0-408a889b6d1f" >
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="kis9989@" database="pharmaeasy" />
+	</db:config>
+	<flow name="createAccountFlow" doc:id="26dbf4b1-6bed-42bc-863a-0747d5170fcf" >
+		<logger level="INFO" doc:name="Logger" doc:id="5de4149c-c728-44a1-b8aa-c6e8f7ecc25d" message="after the....#[payload]"/>
+		<db:insert doc:id="2d060358-50be-4b0d-94a1-9cf7e8b06c10" doc:name="insert" config-ref="Database_Config">
+			<db:sql >insert into account(name,gender,phone,email) 
+values (:name,:gender, :phone, :email) ;
+</db:sql>
+			<db:input-parameters ><![CDATA[#[{
+ 'name':payload.name,
+   'gender':payload.gender,
+        'phone':payload.phone,
+           'email':payload.email
+           }]]]></db:input-parameters>
+		</db:insert>
+		<ee:transform doc:name="Transform Message" doc:id="5acf25e4-1221-4245-b85b-96164277c130" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	statusCode: '201',
+	message: 'successful'
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
